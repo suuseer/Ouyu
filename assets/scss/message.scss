@@ -1,0 +1,38 @@
+.message-page {
+    .message-content {
+        .comment {
+            padding: 0;
+            margin: 0;
+            >.twikoo>.tk-comments>.tk-submit.tk-fade-in {
+                // display: none;
+                padding: 20px;
+                box-shadow: var(--shadow-l1);
+                border-radius: var(--card-border-radius);
+                background-color: var(--card-background)!important;
+                margin-bottom: 20px;
+            }
+            .tk-comments-container {
+                position: relative;
+                display: flex;
+                gap: 20px;
+                .tk-comments-title {
+                    position: absolute;
+                    top: -22px;
+                    right: 10px;
+                    font-size: 15px;
+                    margin: 0;
+                    .tk-comments-count {
+                        display: none !important;
+                    }
+                }
+                >.tk-comment {
+                    background-color: var(--card-background);
+                    border-radius: var(--card-border-radius);
+                    box-shadow: var(--shadow-l1);
+                    padding: 20px;
+                    margin: 0;
+                }
+            }
+        }
+    }
+}

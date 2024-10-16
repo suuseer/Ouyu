@@ -1,0 +1,9 @@
+{{ define "main" }}
+<div class="list-page main-width">
+    {{ if eq .Kind "taxonomy" }}
+    {{ partial "taxonomy" . }}
+    {{ else }}
+    {{ partial "article-list/taxonomyArticle" . }}
+    {{ end }}
+</div>
+{{ end }}

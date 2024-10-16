@@ -1,0 +1,43 @@
+.page-header-main {
+    height: auto;
+    .page-header-content {
+        width: 100%;
+        text-align: left;
+        border: 1px solid #eee;
+        border-bottom: none;
+        
+        display: flex;
+        padding: 200px 50px;
+        h1 {
+            font-size: 48px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: #fff;
+            span {
+                color: #9ED2C6;
+            }
+        }
+        .image-container {
+            margin-top: 40px;
+        }
+    }
+    .features {
+        display: flex;
+        justify-content: center;
+        .feature-box {
+            flex: 1;
+            padding: 20px;
+            border: 1px solid #eee;
+            text-align: left;
+            h3 {
+                margin-top: 0;
+                font-size: 18px;
+                color: #000;
+            }
+            p {
+                font-size: 14px;
+                color: #666;
+            }
+        }
+    }
+}

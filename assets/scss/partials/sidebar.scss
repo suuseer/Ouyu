@@ -1,0 +1,86 @@
+.sidebar {
+  position: fixed;
+  bottom: -400px;
+  background-color: var(--body-background);
+  z-index: 500;
+  width: 100%;
+  padding: 20px;
+  color: var(--body-text-color);
+  overflow-y: auto;
+  @include respond(md) {
+    width: 500px;
+  }
+  display: block;
+  transition: all 0.3s ease-in-out;
+
+  --sidebar-avatar-size: 50px;
+  --sidebar-element-separation: 20px;
+  --emoji-size: 40px;
+  --emoji-font-size: 20px;
+  .sidebar-main {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .site-meta {
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      gap: 10px;
+      .site-avatar {
+        padding: 1px;
+        box-sizing: border-box;
+        overflow: hidden;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .site-name {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 10px 20px;
+        .title {
+          font-size: 25px;
+          font-weight: bold;
+          @include respond(md) {
+            font-size: 30px;
+          }
+        }
+        .subtitle {
+          font-size: 15px;
+          color: var(--card-text-color-secondary);
+          @include respond(md) {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+    .menu {
+      font-size: 1.2em;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      @include respond(md) {
+        font-size: 1.5em;
+      }
+      div {
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(71, 71, 71, 0.5); /* 半透明背景 */
+  backdrop-filter: blur(5px);
+  z-index: 300; /* 确保在侧边栏之下但在内容之上 */
+  display: none; /* 初始隐藏 */
+}

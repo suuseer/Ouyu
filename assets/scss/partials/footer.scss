@@ -1,0 +1,186 @@
+footer.site-footer {
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    padding: 20px 10px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.75;
+    color: var(--card-text-color-secondary);
+    background-color: var(--footer-bg);
+    // 上边阴影
+    box-shadow:0 -3px 1px -3px var(--card-text-color-main);
+    padding: 20px;
+    @include respond(md){
+        font-size: 1.6rem;
+    }
+    .footer-info {
+        max-width: var(--main-container-width);
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        @include respond(md) {
+            display: grid;
+            grid-template-columns: 1fr auto;
+        }
+    }
+    a {
+        color: var(--card-text-color-secondary);
+        // 过渡
+        transition: color 0.2s ease-in-out;
+        &:hover {
+            color: var(--accent-color);
+        }
+    }
+    .right-footer {
+        text-align: left;
+        @include respond(md) {
+            text-align: right;
+        }
+        display: flex;
+        align-items: center;
+        span {
+            margin: 0 2px;
+            @include respond(md) {
+                margin: 0 10px;
+            }
+            :firsest-child {
+                margin-left: 0;
+            }
+        }
+        .upyun {
+            a {
+                display: flex;
+                align-items: center;
+                svg {
+                    height: 18px;
+                    width: max-content;
+                    @include respond(md) {
+                        height: 25px;
+                    }
+                    path {
+                        fill: var(--card-text-color-secondary);
+                    }
+                }
+                &:hover svg path {
+                    fill: #00A0FF;
+                }
+            }
+        }
+    }
+}
+.footer-card {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    @include respond(lg) {
+        grid-template-columns: 2fr 1fr;
+    }
+    padding: 20px 0;
+    .home-statistics {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+        @include respond(lg) {
+            margin-bottom: 0;
+        }
+        .time {
+            flex: 1;
+            .title {
+                font-size: 1.5rem;
+                color: var(--card-text-color-secondary);
+            }
+            .num {
+                font-size: 4.5rem;
+                color: var(--main-color);
+                // 斜体
+                font-style: italic;
+                font-family: 'XLF';
+                margin: 10px 0 20px 20px;
+            }
+        }
+        .post-count {
+            color: var(--card-text-color-secondary);
+            align-self: flex-end;
+            margin-right: auto;
+            .count {
+                font-size: large;
+                color: var(--main-color);
+                font-family: 'XLF';
+                font-style: italic;
+                margin-right: 5px;
+            }
+        }
+    }
+    .footer-card-right {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+        @include respond(md) {
+            -webkit-column-count: 3;
+            -moz-column-count: 3;
+            column-count: 3;
+        }
+        -webkit-column-gap: 1em;
+        -moz-column-gap: 1em;
+        column-gap: 1em;
+        .list {
+            break-inside: avoid-column;
+            margin-bottom: 20px;
+            .title {
+                font-size: 18px;
+                color: var(--card-text-color-secondary);
+                margin-bottom: 10px;
+                font-weight: bold;
+            }
+            .item {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                font-size: 15px;
+                a {
+                    color: var(--card-text-color-secondary);
+                    &:hover {
+                        color: var(--main-color);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.wechatQR {
+    position: fixed;
+    top: -300%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    padding: 15px;
+    z-index: 500;
+    box-shadow: var(--shadow-l4);
+    // 缩放
+    transition: all 0.3s ease-in-out;
+    img {
+        width: 300px;
+        border-radius: 10px;
+        margin: 10px 0;
+    }
+    .tips {
+        font-size: 0.8em;
+        color: var(--card-text-color-secondary);
+        text-align: center;
+        margin: 0;
+    }
+    .wechat-info {
+        text-align: center;
+        .title {
+            font-size: 1.5em;
+            color: var(--card-text-color-main);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            font-size: 1em;
+            color: var(--card-text-color-secondary);
+        }
+    }
+}

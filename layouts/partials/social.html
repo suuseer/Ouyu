@@ -1,0 +1,28 @@
+{{ $socialParams := .Site.Params.social }}
+{{ with $socialParams }}
+<div class="social no-copy">
+  <div class="icon-content" id="wechatQRButtonAbout">
+    <a
+      href="#"
+    >
+      <div class="filled" style="background-color: #17D46B;"></div>
+      {{ partial "helper/icon" "wechat" }}
+    </a>
+    <div class="tooltip" style="background-color: #17D46B;">微信公众号</div>
+  </div>
+  {{ range $socialParams }}
+  <div class="icon-content">
+    <a
+      href="{{ .url }}"
+      aria-label="{{ .title }}"
+      data-social="{{ .title }}"
+      target="_blank"
+    >
+      <div class="filled" style="background-color: {{ .color }};"></div>
+      {{ partial "helper/icon" .icon }}
+    </a>
+    <div class="tooltip" style="background-color: {{ .color }};">{{ .name }}</div>
+  </div>
+  {{ end }}
+</div>
+{{ end }}

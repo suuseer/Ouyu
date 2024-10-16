@@ -1,0 +1,32 @@
+{{ $infoParams := .Site.Params.info }}
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-main">
+    {{ with $infoParams }}
+        <div class="site-meta">
+          <div class="site-avatar card">
+            <a href="/"><img src="{{ .avatar }}" alt="" /></a>
+          </div>
+          <div class="site-name card">
+            <div class="title">
+              {{ .title }}
+            </div>
+            <div class="subtitle">
+              {{ .subtitle }}
+            </div>
+          </div>
+        </div>
+    {{ end }}
+    <div class="menu" id="main-menu">
+        {{ $currentPage := . }}
+        {{ range .Site.Menus.main }}
+        {{ $active := or (eq $currentPage.Title .Name) (or ($currentPage.HasMenuCurrent "main" .) ($currentPage.IsMenuCurrent "main" .)) }}
+        <div class="card">
+          <a href='{{ .URL }}' {{ if eq .Params.newTab true }}target="_blank"{{ end }}>
+              <span>{{- .Name -}}</span>
+          </a>
+        </div>
+        {{ end }}
+    </div>
+  </div>
+</aside>
+<div class="overlay" id="overlay" style=""></div>

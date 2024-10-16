@@ -1,0 +1,35 @@
+
+.home-first-section {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+
+    @include respond(md) {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-columns: 2fr 1fr;
+    }
+
+    .home-pieces {
+        width: 100%;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        overflow: hidden;
+        padding: 5px;
+        svg {
+            width: 30px;
+            height: 30px;
+            path {
+                fill: var(--border-color);
+            }
+        }
+        a {
+            width: calc(100% - 40px);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+}

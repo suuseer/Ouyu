@@ -1,0 +1,43 @@
+{{ if eq .Type "categories" }}
+<div class="section-card">
+    <div class="section-details">
+        <h1 class="section-term">{{ .Title }}</h1>
+        <div class="section-description">{{ .Params.description }}</div>
+    </div>
+</div>
+{{ else if eq .Type "columns" }}
+<div class="columns-cover no-copy">
+    <div class="section-details">
+        <h1 class="section-term">{{ .Title }}</h1>
+        <div class="section-description">{{ .Params.description }}</div>
+    </div>
+    <img src="{{ .Params.cover }}" alt="">
+    <a href="/columns/{{ .Title }}/rss/index.xml" target="_blank" style="background-color: {{ .Params.color }};">
+        {{ partial "helper/icon" "rss" }}
+        订阅专栏
+    </a>
+</div>
+{{ else if eq .Type "tags" }}
+<div class="section-card">
+    <div class="section-details">
+        <h1 class="section-term">{{ .Title }}</h1>
+    </div>
+</div>
+{{ end }}
+
+{{- $subsections := .Sections -}}
+{{- $pages := .Pages | complement $subsections -}}
+
+{{- if eq (len $pages) 0 -}}
+    {{- $pages = $subsections -}}
+    {{- $subsections = slice -}}
+{{- end -}}
+
+{{ $paginator := .Paginate $pages }}
+<section class="article-list--compact">
+    {{ range $paginator.Pages }}
+        {{ partial "article-list/compact" . }}
+    {{ end }}
+</section>
+
+{{ partial "pagination" . }}

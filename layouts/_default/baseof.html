@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}" dir="{{ default `ltr` .Language.LanguageDirection }}">
+    <head>
+        {{- partial "head/head.html" . -}}
+        {{- block "head" . -}}{{ end }}
+        <script src="https://registry.npmmirror.com/twikoo/1.6.39/files/dist/twikoo.all.min.js" integrity="sha384-2/TAh70RaX8JpFlt9NtSVWnK5f86EMdON6ucP5R1dFhCWXaYvTLkB5yf9pp6S6+b" crossorigin="anonymous"></script>
+        <!-- 页面主题色脚本 -->
+    </head>
+    <body class="{{ block `body-class` . }}{{ end }}"  id="top">           
+        {{ $latest := index (where .Site.RegularPages "Type" "post" ) 0 }}
+        {{ with $latest }}
+            <div id="mainColor" data-color="{{ .Params.color }}"></div>
+        {{ end }}
+        <div id="searchOverlay"></div>
+        {{- partial "sidebar/sidebar" . -}}
+        {{- partial "loading" . -}}
+        {{- partial "head/colorScheme" . -}}
+        {{- partial "nav" . -}}
+        {{/* The container is wider when there's any activated widget */}}
+        {{- $hasWidget := false -}}
+        {{- range .Site.Params.widgets -}}
+            {{- if gt (len .) 0 -}}
+                {{- $hasWidget = true -}}
+            {{- end -}}
+        {{- end -}}
+        <div class="main-container flex">
+            <main class="main article-grid">
+                <div class="article-main">
+                    {{- block "main" . }}{{- end }}
+                    {{ partial "footer/include.html" . }}
+                </div>
+            </main>
+        </div>
+        {{- partial "footer/footer" . -}}
+        <div class="overlay" id="wechatQROverlay"></div>
+        <div class="wechatQR card" id="wechatQR">
+            <p class="tips">扫码关注微信公众号</p>
+            <img src="/images/qrcode.jpg" alt="">
+            <div class="wechat-info">
+                {{ $infoParams := .Site.Params.info }}
+                {{ with $infoParams }}
+                <div class="title">
+                    {{ .title }}
+                </div>
+                <div class="subtitle">
+                    {{ .subtitle }}
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </body>
+    <script>
+        const wechatQR = document.getElementById("wechatQR");
+        const wechatQRButtonFooter = document.getElementById("wechatQRButtonFooter");
+        const wechatQRButtonAbout = document.getElementById("wechatQRButtonAbout");
+        const wechatQROverlay = document.getElementById("wechatQROverlay");
+        if (wechatQRButtonFooter) {
+            wechatQRButtonFooter.onclick = function () {
+                wechatQR.style.top = "50%"
+                wechatQROverlay.style.display = "block"
+            }
+            wechatQROverlay.onclick = function () {
+                wechatQR.style.top = "-300%"
+                wechatQROverlay.style.display = "none"
+            }
+        }
+        wechatQRButtonAbout.onclick = function () {
+            wechatQR.style.top = "50%"
+            wechatQROverlay.style.display = "block"
+        }
+        wechatQROverlay.onclick = function () {
+            wechatQR.style.top = "-300%"
+            wechatQROverlay.style.display = "none"
+        }
+    </script>
+    <script>
+    // 获取按钮和侧边栏
+    var toggleButton = document.getElementById('toggleButton');
+    var sidebar = document.getElementById('sidebar');
+    var overlay = document.querySelector('.overlay');
+
+    // 点击按钮显示侧边栏
+    toggleButton.addEventListener('click', function() {
+        sidebar.style.bottom = '0';
+        overlay.style.display = 'block';
+    });
+
+    overlay.addEventListener('click', function() {
+        sidebar.style.bottom = '-400px';
+        overlay.style.display = 'none';
+    });
+    // 当窗口宽度发生变化
+    window.addEventListener('resize', function() {
+        sidebar.style.bottom = '-400px';
+        overlay.style.display = 'none';
+    });
+    </script>
+</html>

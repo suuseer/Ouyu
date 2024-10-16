@@ -1,0 +1,70 @@
+{{ if eq .Type "tags" }}
+<header>
+    <div class="section-card">
+        <div class="section-details">
+            <h1 class="section-term">标签</h1>
+        </div>
+    </div>
+</header>
+<section class="taxonomy-container">
+    <div class="tag-list">
+        {{ range $name, $termPages := index $.Site.Taxonomies "tags" }}
+            {{ $termCount := len $termPages }}
+            <a href="{{ printf "/tags/%s/" $name | relURL }}" class="tag">
+                <span class="sign">#</span>{{ $name }}<span class="taxonomy-count">{{ $termCount }}</span>
+            </a>
+        {{ end }}
+    </div>
+</section>
+{{ else if eq .Type "categories" }}
+<header>
+    <div class="section-card">
+        <div class="section-details">
+            <h1 class="section-term">分类</h1>
+        </div>
+    </div>
+</header>
+<section class="taxonomy-container">
+    <div class="categories-list grid">
+        {{ range $name, $termPages := index $.Site.Taxonomies "categories" }}
+            {{ $categoryPage := (printf "/categories/%s" $name) | relLangURL }} <!-- 构建分类页面的URL -->
+            {{ $page := $.Site.GetPage $categoryPage }} 
+            <a href="{{ $categoryPage | relLangURL }}" class="labels no-copy">
+                <div class="notification">
+                    <div class="notititle">{{ $name }}</div>
+                    <div class="notibody">{{ $page.Params.description }}</div>
+                </div>
+            </a>
+        {{ end }}
+    </div>
+</section>
+{{ else if eq .Type "columns" }}
+<header>
+    <div class="section-card">
+        <div class="section-details">
+            <h1 class="section-term">专栏</h1>
+        </div>
+    </div>
+</header>
+<section class="taxonomy-container">
+    <div class="column-list grid">
+        {{ range $name, $termPages := index $.Site.Taxonomies "columns" }}
+            {{ $columnPage := (printf "/columns/%s" $name) | relLangURL }}
+            {{ $page := $.Site.GetPage $columnPage }}
+            {{ $termCount := len $termPages }}
+            <a href="{{ $columnPage | relLangURL }}" class="labels no-copy">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="{{ printf "/columns/%s/%s" $name $page.Params.cover | relLangURL }}" alt="{{ $page.Params.title }}">
+                        </img>
+                    </div>
+                    <div class="column-title"> {{ $name }} </div>
+                    <div class="heading">{{ $page.Params.description }}
+                        <div class="column-count">共{{ $termCount }}篇文章</div>
+                    </div>
+                </div>
+            </a>
+        {{ end }}
+    </div>
+</section>
+{{ end }}

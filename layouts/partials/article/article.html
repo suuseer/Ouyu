@@ -1,0 +1,100 @@
+<article class="main-article">
+    {{- $image := partialCached "helper/image" (dict "Context" . "Type" "article") .RelPermalink "article" -}}
+    {{ if $image.exists }}
+    <header class="article-header">
+        <div class="article-image">
+            {{ if $image.resource }}
+                {{- $Permalink := $image.resource.RelPermalink -}}
+                {{- $Width := $image.resource.Width -}}
+                {{- $Height := $image.resource.Height -}}
+                {{- $Srcset := "" -}}
+                
+                {{- if (default true .Page.Site.Params.imageProcessing.cover.enabled) -}}
+                    {{- $thumbnail := $image.resource.Resize "800x" -}}
+                    {{- $thumbnailRetina := $image.resource.Resize "1600x" -}}
+                    {{- $Srcset = printf "%s 800w, %s 1600w" $thumbnail.RelPermalink $thumbnailRetina.RelPermalink -}}
+                    {{- $Permalink = $thumbnail.RelPermalink -}}
+                    {{- $Width = $thumbnail.Width -}}
+                    {{- $Height = $thumbnail.Height -}}
+                {{- end -}}
+
+                <img src="{{ $Permalink }}"
+                    {{ with $Srcset }}srcset="{{ . }}"{{ end }}
+                    width="{{ $Width }}" 
+                    height="{{ $Height }}" 
+                    loading="lazy"
+                    alt="Featured image of post {{ .Title }}" />
+            {{ else }}
+                <img src="{{ $image.permalink }}" loading="lazy" alt="Featured image of post {{ .Title }}" />
+            {{ end }}
+            <div class="glass"></div>
+        </div>
+        
+        <div class="article-info">
+            <div class="info-container main-width">
+                <div class="taxonomy">
+                    <div>
+                        {{ if .Params.categories }}
+                            {{ range (.GetTerms "categories") }}
+                                <a href="{{ .RelPermalink }}" class="categories" title="分类">{{ .LinkTitle }}</a>
+                            {{ end }}
+                        {{ end }}
+                        {{ if .Params.columns }}
+                        {{ range (.GetTerms "columns") }}
+                            <a href="{{ .RelPermalink }}" class="categories" title="专栏">{{ .LinkTitle }}</a>
+                        {{ end }}
+                        {{ end }}
+                    </div>
+                    {{ if .Params.Tags }}
+                    {{ range (.GetTerms "tags") }}
+                        <a href="{{ .RelPermalink }}" class="tags"><span class="sign">#</span>{{ .LinkTitle }}</a>
+                    {{ end }}
+                    {{ end }}
+                </div>
+                <h2 class="article-title">
+                    {{- .Title -}}
+                </h2>
+                <div class="article-info-footer">
+                    <span class="article-time--published">
+                        {{ partial "helper/icon" "calendar" }}
+                        {{- .Date.Format (or .Site.Params.dateFormat.published "Jan 02, 2006") -}}
+                    </span>
+                    <!-- 获取当前文章的字数 -->
+                     <span class="article-word-count">{{ partial "helper/icon" "WordCount" }} {{ .WordCount }}字</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    {{ end }}
+
+    <div class="article-page-wave">
+        <svg class="editorial"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28"
+        preserveAspectRatio="none">
+    <defs>
+        <path id="gentle-wave"
+                d="M-160 44c30 0
+    58-18 88-18s
+    58 18 88 18
+    58-18 88-18
+    58 18 88 18
+    v44h-352z" />
+    </defs>
+    <g class="parallax">
+        <use xlink:href="#gentle-wave" x="50" y="0" fill="var(--body-background)" />
+        <use xlink:href="#gentle-wave" x="50" y="3" fill="var(--body-background)" style="opacity: 0.8;"/>
+        <use xlink:href="#gentle-wave" x="50" y="6" fill="var(--body-background)" style="opacity: 0.5;" />
+    </g>
+    </svg>
+    </div>
+    <div class="article-main-content  main-width">
+        {{ partial "article/components/content" . }}
+        {{ partial "sidebar/right.html" . }}
+    </div>
+    {{ if or .Params.math .Site.Params.article.math }}
+        {{ partialCached "article/components/math.html" . }}
+    {{ end }}
+</article>

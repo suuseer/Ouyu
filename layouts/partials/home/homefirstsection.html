@@ -1,0 +1,49 @@
+<section class="home-first-section main-width">
+    <div class="home-pieces card">
+        {{ partial "helper/icon" "pieces" }}
+        <a href="/pieces/">
+            <span id="ideaDisplay"></span>
+        </a>
+    </div>
+    <div class="home-search-icon card" id="searchBtn">
+        <button title="{{ T `search.title` }}">
+            {{ partial "helper/icon" "search" }}
+        </button>
+    </div>
+    <div class="home-search card" id="searchContainer">
+        {{ partial "widget/search" . }}
+    </div>
+</section>
+<script>
+    // 使用 fetch 调用 API
+    fetch('https://bankend.suuus.top/pieces/pieces-data')
+        .then(response => response.json())
+        .then(data => {
+            const displayElement = document.getElementById('ideaDisplay');
+            let currentIndex = 0;  // 当前显示的索引
+
+            const filteredData = data.filter(item => item.idea.trim() !== "");  // 过滤掉空的 idea
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);  // 设置今天的时间为午夜
+
+            function updateDisplay() {
+                if (filteredData.length === 0) return;  // 如果没有数据，就不执行
+
+                const item = filteredData[currentIndex];
+                const itemDate = new Date(item.timestamp);
+                itemDate.setHours(0, 0, 0, 0);
+                const timeDiff = today - itemDate;
+                const daysAgo = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+                let displayText = daysAgo === 0 ? "今天" : `${daysAgo}天前`;
+
+                displayElement.innerHTML = `<strong>${displayText}：</strong> ${item.idea}`;
+
+                currentIndex = (currentIndex + 1) % filteredData.length;  // 更新索引，循环显示
+            }
+
+            // 每5秒更新一次显示
+            updateDisplay();  // 初始显示
+            setInterval(updateDisplay, 3000);  // 设置定时器
+        })
+        .catch(error => console.error('获取数据错误:', error));
+</script>

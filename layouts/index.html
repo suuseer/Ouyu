@@ -1,0 +1,72 @@
+{{ define "main" }}
+{{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
+{{ $notHidden := where .Site.RegularPages "Params.hidden" "!=" true }}
+{{ $filtered := ($pages | intersect $notHidden) }}
+<div class="site-main no-copy">
+    {{- partial "home/homefirstsection.html" . -}}
+    <section class="article-latest main-width">
+        {{ range first 1 $filtered }}
+        {{ partial "home/latest" . }}
+        {{ end }}
+    </section>
+    {{ partial "home/homeList" . }}
+    {{ partial "home/homeTaxonomy" . }}
+    <section class="friends-article-container">
+        <div class="friends-article">
+            <div class="title">
+                Friend's Article
+            </div>
+            <div class="friend-article-list" id="friendsArticle">
+                <div class="loading-wave">
+                    <div class="loading-bar"></div>
+                    <div class="loading-bar"></div>
+                    <div class="loading-bar"></div>
+                    <div class="loading-bar"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="home-gallery-container main-width">
+        <div  class="home-section">
+            <span>画廊</span>    
+            <a href="/gallery">
+                {{ partial "helper/icon" "ArrowCircleUpRight" }}
+            </a>
+        </div>
+        <div id="homeGallery" class="home-gallery grid"></div>
+    </section>
+    <section class="home-vault-container main-width">
+        <div  class="home-section">
+            <span>藏宝</span>    
+            <a href="/vault">
+                {{ partial "helper/icon" "ArrowCircleUpRight" }}
+            </a>
+        </div>
+        <div id="homeVault" class="home-vault grid"></div>
+    </section>
+</div>
+<script>
+    // 定义一个函数，根据窗口宽度不同，输出不同的数字
+    function getContentCount() {
+        const width = window.innerWidth;
+        let count;
+        if (width < 640) {
+            // 小屏幕，如手机
+            count = 4;
+        } else if (width < 768) {
+            // 中等屏幕，如平板
+            count = 6;
+        } else if (width < 1024) {
+            // 中等屏幕，如平板
+            count = 4;
+        } else if (width < 1280) {
+            // 中等屏幕，如平板
+            count = 5;
+        } else {
+            // 中等屏幕，如平板
+            count = 6;
+        }
+        return count;
+    }
+</script>
+{{ end }}

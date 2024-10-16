@@ -1,0 +1,94 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('/fonts/icomoon.eot?u06dbc');
+  src:  url('/fonts/icomoon.eot?u06dbc#iefix') format('embedded-opentype'),
+    url('/fonts/icomoon.ttf?u06dbc') format('truetype'),
+    url('/fonts/icomoon.woff?u06dbc') format('woff'),
+    url('/fonts/icomoon.svg?u06dbc#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-th-menu:before {
+  content: "\e900";
+}
+.icon-media-fast-forward:before {
+  content: "\e90b";
+}
+.icon-email:before {
+  content: "\e904";
+}
+.icon-launch:before {
+  content: "\e908";
+}
+.icon-date_range:before {
+  content: "\e901";
+}
+.icon-nights_stay:before {
+  content: "\e90f";
+}
+.icon-arrow-up-circle:before {
+  content: "\e909";
+  // 顺时针旋转45度
+  width: max-content;
+  display: inline-block;
+  transform: rotate(45deg);
+}
+.icon-train:before {
+  content: "\e906";
+}
+.icon-cancel1:before {
+  content: "\e90c";
+}
+.icon-bubble:before {
+  content: "\e90a";
+}
+.icon-nights_stay:before {
+  content: "\e90f";
+}
+.icon-train:before {
+  content: "\e906";
+}
+.icon-cancel1:before {
+  content: "\e90c";
+}
+.icon-bubble:before {
+  content: "\e90a";
+}
+.icon-chat:before {
+  content: "\e905";
+}
+.icon-chat:before {
+  content: "\e905";
+}
+.icon-arrow-up:before {
+  content: "\e907";
+}
+.icon-refresh:before {
+  content: "\f021";
+}
+.icon-github-square:before {
+  content: "\e902";
+}
+.icon-search:before {
+  content: "\e903";
+}
+.icon-images:before {
+  content: "\e90e";
+}

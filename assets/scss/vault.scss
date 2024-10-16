@@ -1,0 +1,473 @@
+.radio-inputs {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: var(--card-border-radius);
+  background-color: var(--card-background);
+  box-shadow: var(--shadow-l1);
+  box-sizing: border-box;
+  padding: 10px;
+  width: 100%;
+  font-size: 18px;
+  margin-top: 20px;
+  .radio {
+    flex: 1 1 auto;
+    text-align: center;
+    input {
+      display: none;
+      &:checked + .name {
+        border-bottom: 1px solid var(--main-color);
+        color: var(--main-color);
+      }
+    }
+    .name {
+      display: flex;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      padding: 1rem 0;
+      color: var(--card-text-color-main);
+      transition: all 0.15s ease-in-out;
+    }
+  }
+}
+.vault-content {
+  margin-top: var(--section-separation);
+  position: relative;
+  height: auto;
+  .tips {
+    position: absolute;
+    width: 100%;
+    height: max-content;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+    color: var(--card-text-color-secondary);
+  }
+}
+.vault-item {
+  width: 100%;
+  border-radius: var(--card-border-radius);
+  background-color: var(--card-background);
+  position: relative;
+  box-shadow: var(--shadow-l1);
+  transition: all 0.3s;
+  .card-txt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 20px;
+    z-index: 5;
+    opacity: 0;
+    transition: all 0.3s;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+  }
+  .rating {
+    color: #000;
+    font-size: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 5px 10px;
+    z-index: 6;
+    /* 星星初始样式（未动画时状态） */
+    .star {
+      font-size: 16px;
+      color: gold; /* 空心星星的颜色 */
+      opacity: 0; /* 初始状态透明 */
+      transform: scale(0.5); /* 初始状态缩小 */
+      display: inline-block;
+      transition: opacity 0.5s, transform 0.5s; /* 过渡效果 */
+      @include respond(md) {
+        font-size: 24px;
+      }
+    }
+    /* 实心星星 */
+    .star.filled {
+      color: gold; /* 实心星星的颜色 */
+    }
+  }
+  .card-content {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &:hover {
+    transform: scale(1.05);
+    .card-txt {
+      opacity: 1;
+    }
+    .star {
+      transform: scale(1); /* 正常大小 */
+      animation: starAppear 0.5s forwards; /* 动画效果 */
+    }
+
+    /* 依次展现的星星 */
+    .star:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .star:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .star:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .star:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+
+    .star:nth-child(5) {
+      animation-delay: 0.5s;
+    }
+  }
+}
+.video-item,
+.game-item,
+.book-item {
+  padding-top: 142%;
+  position: relative;
+  overflow: hidden;
+  .card-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+.goods-item,
+.software-item {
+  height: auto;
+  padding: 20px;
+  cursor: pointer;
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    img {
+      width: 50px;
+      height: 50px;
+      margin: 10px auto;
+      border-radius: 10px;
+    }
+    .card-title {
+      color: var(--card-text-color-main);
+      font-size: 20px;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    .rating {
+      color: var(--card-text-color-secondary);
+    }
+    .card-txt {
+      border-radius: var(--card-border-radius);
+    }
+    .card-btn {
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      padding: 10px;
+      // 过渡
+      transition: all 0.3s;
+      color: #fff;
+      font-weight: bold;
+      font-size: 10px;
+      background-color: var(--main-color);
+      border-radius: var(--card-border-radius);
+      z-index: 6;
+      @include respond(md) {
+        font-size: 11px;
+      }
+    }
+  }
+  &:hover {
+    z-index: 20;
+    .card-btn {
+      position: absolute;
+      bottom: -15px;
+      opacity: 1;
+    }
+  }
+}
+.goods-item {
+  img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover;
+    margin: 10px auto;
+    border-radius: 10px;
+    margin: 0 auto;
+  }
+  .item-info {
+    margin-top: auto;
+  }
+}
+.podcast-item .play,
+.music-item .play {
+  position: absolute;
+  z-index: 10;
+  top: -100%;
+  right: -100%;
+  transform: translateX(-50%);
+  transition: all 0.3s;
+  svg {
+    path {
+      fill: #fff;
+      stroke: #fff;
+    }
+    width: 20px;
+    height: 20px;
+  }
+}
+// .music-item:hover {
+//   transform: scale(1.05);
+// }
+.podcast-item {
+  border-radius: var(--card-border-radius);
+  overflow: hidden;
+}
+.podcast-item,
+.music-item {
+  width: 100%;
+  padding-top: 100%;
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+    z-index: 5;
+  }
+  .item-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
+.podcast-item,
+.music-item {
+  .album {
+    z-index: 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 90%;
+    height: 90%;
+    overflow: hidden;
+    transform: translate(-50%, -50%);
+    // 过渡
+    transition: all 0.3s;
+    background-color: #111;
+    border: 1px solid #111;
+    border-radius: 50%;
+    box-shadow: 0 0.0625em 0.1875em rgba(0, 0, 0, 0.5),
+      0 0 0.125em 0.3125em #ddd, 0 0.0625em 0 0.375em #bbb,
+      0 0 0.375em 0.325em rgba(0, 0, 0, 0.3),
+      0 0 0.5em 0.375em rgba(0, 0, 0, 0.3),
+      0 0.25em 1em 0.5em rgba(0, 0, 0, 0.15),
+      inset 0 0 0 0.0625em rgba(0, 0, 0, 0.5),
+      inset 0 0 0 0.1875em rgba(255, 255, 255, 1),
+      inset 0 0 0 0.375em rgba(0, 0, 0, 0.5),
+      inset 0 0 0 0.4375em rgba(255, 255, 255, 0.2),
+      inset 0 0 0 0.5em rgba(0, 0, 0, 0.5),
+      inset 0 0 0 0.5625em rgba(255, 255, 255, 0.3),
+      inset 0 0 0 0.625em rgba(0, 0, 0, 0.5),
+      inset 0 0 0 0.6875em rgba(255, 255, 255, 0.2),
+      inset 0 0 0 0.75em rgba(0, 0, 0, 0.5),
+      inset 0 0 0 0.8125em rgba(255, 255, 255, 0.3),
+      inset 0 0 0 0.875em rgba(0, 0, 0, 0.5),
+      inset 0 0 0 0.9375em rgba(255, 255, 255, 0.3),
+      inset 0 0 0 1em rgba(0, 0, 0, 0.5),
+      inset 0 0 0 1.0625em rgba(255, 255, 255, 0.2),
+      inset 0 0 0 1.125em rgba(0, 0, 0, 0.5),
+      inset 0 0 0 1.1875em rgba(255, 255, 255, 0.3),
+      inset 0 0 0 1.25em rgba(0, 0, 0, 0.5),
+      inset 0 0 0 1.3125em rgba(255, 255, 255, 0.2),
+      inset 0 0 0 1.375em rgba(255, 255, 255, 0.2),
+      inset 0 0 0 1.4375em rgba(0, 0, 0, 0.5),
+      inset 0 0 0 1.5em rgba(255, 255, 255, 0.3),
+      inset 0 0 0 1.5625em rgba(0, 0, 0, 0.5),
+      inset 0 0 0 1.625em rgba(255, 255, 255, 0.3),
+      inset 0 0 0 1.6875em rgba(0, 0, 0, 0.5),
+      inset 0 0 0 1.75em rgba(255, 255, 255, 0.2),
+      inset 0 0 0 1.8125em rgba(0, 0, 0, 0.5),
+      inset 0 0 0 1.875em rgba(255, 255, 255, 0.2),
+      inset 0 0 0 1.9375em rgba(0, 0, 0, 0.5),
+      inset 0 0 0 2em rgba(255, 255, 255, 0.3),
+      inset 0 0 0 2.0625em rgba(0, 0, 0, 0.5),
+      inset 0 0 0 2.125em rgba(0, 0, 0, 0.5),
+      inset 0 0 0 2.1875em rgba(255, 255, 255, 0.1),
+      inset 0 0 0 2.25em rgba(0, 0, 0, 0.5),
+      inset 0 0 0 2.3125em rgba(255, 255, 255, 0.2),
+      inset 0 0 0 2.375em rgba(255, 255, 255, 0.1),
+      inset 0 0 0 2.4375em rgba(0, 0, 0, 0.5),
+      inset 0 0 0 2.5em rgba(255, 255, 255, 0.3),
+      inset 0 0 0 2.5625em rgba(0, 0, 0, 0.5),
+      inset 0 0 0 2.625em rgba(255, 255, 255, 0.2),
+      inset 0 0 0 2.6875em rgba(0, 0, 0, 0.5),
+      inset 0 0 0 2.75em rgba(255, 255, 255, 0.2),
+      inset 0 0 0 2.8125em rgba(0, 0, 0, 0.5),
+      inset 0 0 0 2.875em rgba(255, 255, 255, 0.2),
+      inset 0 0 0 2.9375em rgba(0, 0, 0, 0.5),
+      inset 0 0 0 3em rgba(255, 255, 255, 0.3),
+      inset 0 0 0 3.0625em rgba(0, 0, 0, 0.5),
+      inset 0 0 0 3.125em rgba(0, 0, 0, 0.5),
+      inset 0 0 0 3.1875em rgba(255, 255, 255, 0.2),
+      inset 0 0 0 3.25em rgba(0, 0, 0, 0.5),
+      inset 0 0 0 3.3125em rgba(255, 255, 255, 0.2),
+      inset 0 0 0 3.375em rgba(255, 255, 255, 0.1),
+      inset 0 0 0 3.4375em rgba(0, 0, 0, 0.5),
+      inset 0 0 0 3.5em rgba(255, 255, 255, 0.3);
+  }
+  .album::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    background-image: linear-gradient(
+        -45deg,
+        rgba(255, 255, 255, 0) 30%,
+        rgba(255, 255, 255, 0.125),
+        rgba(255, 255, 255, 0) 70%
+      ),
+      linear-gradient(
+        -48deg,
+        rgba(255, 255, 255, 0) 45%,
+        rgba(255, 255, 255, 0.075),
+        rgba(255, 255, 255, 0) 55%
+      ),
+      linear-gradient(
+        -42deg,
+        rgba(255, 255, 255, 0) 45%,
+        rgba(255, 255, 255, 0.075),
+        rgba(255, 255, 255, 0) 55%
+      ),
+      radial-gradient(
+        circle at top left,
+        rgba(0, 0, 0, 1) 20%,
+        rgba(0, 0, 0, 0) 80%
+      ),
+      radial-gradient(
+        circle at bottom right,
+        rgba(0, 0, 0, 1) 20%,
+        rgba(0, 0, 0, 0) 80%
+      );
+  }
+}
+
+.video-item,
+.game-item,
+.podcast-item,
+.music-item,
+.book-item {
+  .card-btn {
+    position: absolute;
+    top: 20px;
+    right: -80px;
+    z-index: 10;
+    padding: 5px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 5px 0 0 5px;
+    background-color: var(--main-color);
+    // 过渡
+    transition: all 0.3s;
+  }
+  .card-title {
+    position: absolute;
+    bottom: -100%;
+    left: -100%;
+    width: auto;
+    font-size: 12px;
+    padding: 5px;
+    z-index: 10;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.726);
+    border-radius: 0 var(--card-border-radius) 0 0;
+    color: #000000c5;
+    transition: all 0.3s;
+  }
+
+  &:hover {
+    .play {
+      top: 10px;
+      right: 0;
+    }
+    .card-btn {
+      right: 0;
+      color: #fff;
+      font-size: 14px;
+    }
+    .card-title {
+      bottom: 0;
+      left: 0;
+    }
+
+    .album {
+      left: 80%;
+    }
+    .card-category {
+      opacity: 1;
+    }
+  }
+}
+/* 动画关键帧 */
+@keyframes starAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0.5); /* 缩小状态 */
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1); /* 正常大小 */
+  }
+}
+
+.music-item:hover {
+  z-index: 50;
+}
+.game-item .card-category {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 6;
+  transition: all 1s;
+  opacity: 0;
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+  }
+}

@@ -1,0 +1,162 @@
+/* Default article style */
+.article-list {
+  display: flex;
+  flex-direction: column;
+
+  article {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+      box-shadow: var(--shadow-l2);
+    }
+
+    .article-image {
+      img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+
+        @include respond(md) {
+          height: 200px;
+        }
+      }
+    }
+  }
+}
+
+.article-title {
+  font-family: var(--article-font-family);
+  font-weight: 600;
+  margin: 0;
+  color: var(--card-text-color-main);
+  font-size: 1.8rem;
+
+  @include respond(xl) {
+    font-size: 2rem;
+  }
+
+  a {
+    color: var(--card-text-color-main);
+
+    &:hover {
+      color: var(--card-text-color-main);
+    }
+  }
+}
+
+.article-subtitle {
+  font-weight: normal;
+  color: var(--card-text-color-secondary);
+  line-height: 1.5;
+  margin: 0;
+  font-size: 1.5rem;
+  @include respond(xl) {
+    font-size: 1.5rem;
+  }
+}
+
+.article-time,
+.article-translations {
+  display: flex;
+  align-items: center;
+  color: var(--card-text-color-tertiary);
+  gap: 15px;
+
+  svg {
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    stroke-width: 1.33;
+    flex-shrink: 0;
+  }
+
+  time,
+  a {
+    font-size: 1.4rem;
+    color: var(--card-text-color-tertiary);
+  }
+
+  & > div {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+  }
+}
+
+.article-time {
+  flex-wrap: wrap;
+}
+
+.article-translations {
+  & > div {
+    flex-wrap: wrap;
+  }
+}
+
+.article-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px 0;
+
+  a {
+    color: #fff;
+    background-color: var(--main-color);
+    padding: 8px 16px;
+    border-radius: var(--tag-border-radius);
+    display: inline-block;
+    font-size: 1.4rem;
+    transition: background-color 0.5s ease;
+
+    &:hover {
+      color: #fff;
+      background-color: var(--accent-color-darker);
+    }
+  }
+}
+
+/* Tile style article list */
+.article-list--tile {
+  article {
+    overflow: hidden;
+    position: relative;
+    height: 350px;
+    width: 250px;
+    box-shadow: var(--shadow-l1);
+    transition: box-shadow 0.3s ease;
+    background-color: var(--card-background);
+
+    &:hover {
+      box-shadow: var(--shadow-l2);
+    }
+
+    .article-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .article-title {
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--card-text-color-main);
+
+      @include respond(sm) {
+        font-size: 4rem;
+      }
+    }
+  }
+}

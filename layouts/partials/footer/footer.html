@@ -1,0 +1,119 @@
+<section class="main-width">
+    <div class="footer-card no-copy">
+        <div class="home-statistics">
+            <div class="time">
+                <div class="title">存在于互联网一隅:</div>
+                <div class="num" id=span_dt_dt></div>
+            </div>
+            <div class="post-count">
+                {{$scratch := newScratch}}
+                {{ range (where .Site.Pages "Kind" "page" )}}
+                    {{$scratch.Add "total" .WordCount}}
+                {{ end }}
+                共创作了<span class="count">{{ len (where .Site.RegularPages "Section" "post") }}</span>篇文章
+            </br>
+                总计<span class="count">{{ div ($scratch.Get "total") 1000.0 | lang.FormatNumber 2 }}k</span>字
+            </div>
+        </div>
+        <div class="footer-card-right">
+            <div class="list">
+                <div class="title">文章归档</div>
+                <div class="item">
+                    <a href="/categories/">文章分类</a>
+                    <a href="/tags/">标签云</a>
+                    <a href="/columns/">我的专栏</a>
+                </div>
+            </div>
+            <div class="list">
+                <div class="title">推荐分类</div>
+                <div class="item">
+                    <a href="/categories/经验分享/">经验分享</a>
+                    <a href="/categories/我的项目/">我的项目</a>
+                    <a href="/categories/生活记录/">生活记录</a>
+                </div>
+            </div>
+            <div class="list">
+                <div class="title">关注我</div>
+                <div class="item">
+                    <a id="wechatQRButtonFooter">公众号</a>
+                    <a href="https://github.com/Morick66" target="_blank">Github</a>
+                    <a href="https://www.zhihu.com/people/morick55" target="_blank">知乎</a>
+                    <a href="https://sspai.com/u/morick655/updates" target="_blank">少数派</a>
+                    <a href="https://space.bilibili.com/37313792" target="_blank">哔哩哔哩</a>
+                </div>
+            </div>
+            <div class="list">
+                <div class="title">联系我</div>
+                <div class="item">
+                    <a href="mailto:hello@suus.me">邮箱</a>
+                </div>
+            </div>
+            <div class="list">
+                <div class="title">RSS订阅</div>
+                <div class="item">
+                    <a href="/rss/index.xml" target="_blank">订阅所有文章</a>
+                </div>
+            </div>
+            <div class="list">
+                <div class="title">声明/协议</div>
+                <div class="item">
+                    <a href="/cc/">版权声明</a>
+                    <a href="/privacy/">隐私协议</a>
+                    <a href="/disclaimer/">免责声明</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="site-footer no-copy">
+    <div class="footer-info">
+        <div class="left-footer">
+            <section class="copyright">
+                &copy; 
+                {{ if and (.Site.Params.footer.since) (ne .Site.Params.footer.since (int (now.Format "2006"))) }}
+                    {{ .Site.Params.footer.since }} - 
+                {{ end }}
+                {{ now.Format "2006" }} {{ default .Site.Title .Site.Copyright }}·版权所有
+            </section>
+        </div>
+        <div class="right-footer">
+            <span class="upyun">
+                <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank">
+                    {{ partial "helper/icon" "upyun" }}
+                </a>
+            </span>
+            <span class="hugo">
+                <a href="https://gohugo.io/" target="_blank">Hugo</a>
+            </span>
+            <span class="theme">
+                <a href="/theme" target="_blank">主题</a>
+            </span>
+            {{ if .Site.Params.footer.icp.enabled }}
+            <span class="ICP">
+                <a href="{{ .Site.Params.footer.icp.icplink }}" target="_blank" target="_blank">{{ .Site.Params.footer.icp.icpnum }}</a>
+            </span>
+            {{ end }}
+        </div>
+    </div>
+</footer>
+<SCRIPT language="javascript">
+    function show_date_time(){
+        // 设置每秒钟更新一次
+        window.setTimeout(show_date_time, 1000);
+
+        // 获取配置文件中的日期并计算时间差
+        const BirthDay = new Date("{{ .Site.Params.footer.starttime }}"); // 日期来自配置文件
+        const today = new Date();
+        const timeDiff = today.getTime() - BirthDay.getTime(); // 当前时间与设置时间的差
+
+        // 将时间差转换为天数
+        const daysold = Math.floor(timeDiff / (24 * 60 * 60 * 1000));
+
+        // 将天数展示到页面上
+        const span = document.getElementById("span_dt_dt");
+        if (span) {
+            span.innerHTML = `第${daysold}天`;
+        }
+    }
+    show_date_time();
+</SCRIPT>

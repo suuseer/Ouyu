@@ -1,0 +1,23 @@
+{{ define "main" }}
+<div class="links-page main-width">
+    <div id="linksLoading" style="display: block;">
+        <div class="loading-wave">
+            <div class="loading-bar"></div>
+            <div class="loading-bar"></div>
+            <div class="loading-bar"></div>
+            <div class="loading-bar"></div>
+        </div>
+        <p id= "linksloadError" style="text-align: center; display: none;">数据加载失败</p>
+    </div>
+    <div class="links" id="linksMain">
+        <div class="section-title">我的关注</div>
+        <div class="links-container" id="myfollows"></div>
+        <div class="section-title">友情链接</div>
+        <div class="links-container" id="friends"></div>
+    </div>
+    <section class="page-content card">
+        {{ .Content }}
+    </section>
+</div>
+{{ partial "comments/twikoo" . }}
+{{ end }}

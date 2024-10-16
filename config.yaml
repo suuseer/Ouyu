@@ -1,0 +1,153 @@
+baseurl: https://morick66.com/
+languageCode: zh-cn
+paginate: 20
+title: SUUS
+copyright: SUUS
+
+hasCJKLanguage: true
+
+permalinks:
+  post: /post/:slug/
+  page: /:slug/
+
+params:
+  mainSections:
+    - post
+  featuredImageField: image
+  rssFullContent: true
+  favicon: /favicon.ico
+  info:
+    avatar: /images/SUUS.png
+    title: SUUS
+    subtitle: 假装自己是个外星人
+
+    github: https://github.com/Morick66
+    email: morick655@163.com
+    zhihu: https://www.zhihu.com/people/morick55
+    bilibili: https://space.bilibili.com/37313792
+  social:
+    - title: github
+      name: Github
+      icon: github
+      url: https://github.com/Morick66
+      color: "#000000"
+    - title: ssp
+      name: "少数派"
+      icon: ssp
+      url: "https://sspai.com/u/morick655/updates"
+      color: "#DA282A"
+    - title: zhihu
+      name: 知乎
+      icon: zhihu
+      url: https://www.zhihu.com/people/morick55
+      color: "#1772F6"
+    - title: bilibili
+      name: 哔哩哔哩
+      icon: bilibili
+      url: https://space.bilibili.com/37313792
+      color: "#FB7299"
+  navbar:
+    title: SUUS
+
+  footer:
+    since: 2024
+    customText:
+    startTime: 03/19/2024 00:00:00   # Website start time
+    icp:
+      enabled: true
+      icpnum: 
+      icplink: 
+
+  dateFormat:
+    published: Jan 02, 2006
+    lastUpdated: Jan 02, 2006 15:04 MST
+
+  article:
+    math: false
+    toc: true
+    license:
+      enabled: true
+      default: Licensed under CC BY-NC-SA 4.0
+  comments:
+    enabled: true
+
+    twikoo:
+        envId: 'https://twosu.netlify.app/.netlify/functions/twikoo'
+        region: ap-beijing
+        path: 
+        lang: zh-cn
+
+  colorScheme:
+    # Display toggle
+    toggle: true
+
+    # Available values: auto, light, dark
+    default: auto
+
+  ### umami统计
+  umami:
+    url: ''
+    websiteId: ""
+    token: ""
+
+related:
+  includeNewer: true
+  threshold: 60
+  toLower: false
+  indices:
+    - name: tags
+      weight: 100
+    - name: categories
+      weight: 200
+    - name: columns
+      weight: 300
+
+taxonomies:
+  category: categories
+  tag: tags
+  column: columns
+
+outputs:
+  home:
+    - randomJSON
+    - HTML
+    - RSS
+  section:
+    - HTML
+  taxonomy:
+    - HTML
+  page:
+    - HTML
+
+outputFormats:
+  randomJSON:
+    mediaType: "application/json"
+    baseName: "random"
+    isPlainText: true
+    notAlternative: true
+    noUgly: true
+    path: "/"
+  RSS:
+    mediaType: "application/rss+xml"
+    baseName: "index"
+    isPlainText: true
+    notAlternative: true
+    noUgly: true
+    path: "/rss"
+
+markup:
+    goldmark:
+        renderer:
+            unsafe: true
+    tableOfContents:
+        endLevel: 4
+        ordered: true
+        startLevel: 2
+    highlight:
+        noClasses: false
+        codeFences: true
+        guessSyntax: true
+        lineNoStart: 1
+        lineNos: true
+        lineNumbersInTable: true
+        tabWidth: 4

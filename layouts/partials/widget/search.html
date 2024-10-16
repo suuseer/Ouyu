@@ -1,0 +1,11 @@
+<div class="search-form">
+    <input id="search" autocomplete="off" placeholder='输入关键词快速搜索'
+aria-label="Search" oninput="searchOnChange(event)">
+    <div class="search-icon">
+        {{ partial "helper/icon" "search" }}
+    </div>
+</div>
+<section id="search-content" class="search-content" style="display: none;">
+    <div id="pagination-controls"></div>
+    <div class="search-results-container" id="search-results"></div>
+</section>

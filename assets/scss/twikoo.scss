@@ -1,0 +1,209 @@
+.comment {
+  width: 100%;
+  max-width: var(--main-container-width);
+  padding: var(--card-padding);
+  color: var(--body-text-color);
+  margin-top: 20px;
+}
+.title--comment {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.title--comment h2 {
+  margin: 0;
+  color: var(--main-color);
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+.icon,
+.name {
+  line-height: 1;
+}
+.name {
+  margin-left: 5px;
+}
+.icon svg {
+  vertical-align: middle;
+  height: 1em;
+  stroke: var(--main-color);
+  stroke-width: 2;
+  width: 1em;
+  height: 1em;
+}
+:root {
+  --twikoo-body-text-color-main: rgba(0, 0, 0, 0.9);
+  --twikoo-body-text-color: rgba(0, 0, 0, 0.7);
+}
+:root[data-scheme="dark"] {
+  --twikoo-body-text-color-main: rgba(255, 255, 255, 0.9);
+  --twikoo-body-text-color: rgba(255, 255, 255, 0.7);
+}
+a.tk-submit-action-icon {
+  display: none;
+}
+.tk-submit-action-icon {
+  color: var(--body-text-color);
+}
+.tk-row > .tk-avatar {
+  display: none !important;
+}
+.tk-avatar {
+  width: 30px !important;
+  height: 30px !important;
+}
+.tk-avatar img {
+  width: 30px !important;
+  height: 30px !important;
+}
+.tk-replies .tk-clickable {
+  width: 25px !important;
+  height: 25px !important;
+}
+.tk-replies .tk-clickable img {
+  width: 25px !important;
+  height: 25px !important;
+}
+.twikoo .el-input-group__prepend,
+.twikoo .tk-time,
+.twikoo .tk-comments-no,
+.twikoo .tk-comments-count {
+  color: var(--twikoo-body-text-color);
+}
+.tk-comments-container {
+  margin-top: 15px;
+}
+.tk-nick {
+  color: var(--main-color) !important;
+  font-size: 20px !important;
+}
+.tk-replies .tk-nick {
+  font-size: 16px !important;
+}
+.twikoo .tk-action-icon {
+  color: var(--main-color);
+}
+.el-textarea {
+  position: relative;
+}
+.el-input__count {
+  position: absolute;
+  top: 5px;
+  right: 20px;
+}
+.twikoo .el-input__inner,
+.twikoo .el-textarea__inner {
+  background-color: var(--body-background) !important;
+}
+
+.el-input-group__prepend {
+  border-radius: var(--card-border-radius) 0 0 var(--card-border-radius) !important;
+}
+.el-input__inner {
+  border-radius: 0 var(--card-border-radius) var(--card-border-radius) 0 !important;
+}
+.twikoo .el-textarea__inner {
+  padding-bottom: 50px;
+  border-radius: var(--card-border-radius);
+}
+.twikoo .actions {
+  margin-top: -35px !important;
+  padding: 0 20px;
+}
+.twikoo .el-input__inner,
+.twikoo .el-textarea__inner,
+.twikoo .tk-preview-container,
+.twikoo .tk-content,
+.twikoo .tk-send {
+  color: var(--twikoo-body-text-color-main);
+}
+.twikoo .tk-preview {
+  display: none !important;
+}
+.twikoo .el-input__count {
+  color: var(--twikoo-body-text-color) !important;
+}
+.OwO .OwO-body {
+  background-color: var(--body-background) !important;
+  color: var(--body-text-color) !important;
+}
+.twikoo input,
+.twikoo input:focus {
+  border: 1px solid rgba(144, 147, 153, 0.31) !important;
+}
+
+textarea:focus {
+  border: 2px solid var(--main-color) !important;
+}
+
+.twikoo .tk-cancel,
+.twikoo .tk-send {
+  background-color: var(--main-color) !important;
+  color: #fff !important;
+  border: none !important;
+  padding: 5px 10px;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-l1);
+  &:hover {
+    // 放大
+    transform: scale(1.05);
+  }
+}
+.twikoo .tk-cancel {
+  background-color: var(--card-background) !important;
+  color: var(--body-text-color) !important;
+}
+.tk-expand {
+  color: var(--body-text-color);
+}
+.tk-tag {
+  padding: 5px 5px !important;
+  border: none !important;
+}
+.tk-action .tk-action-link:first-child {
+  display: none !important;
+}
+.tk-action .tk-action-link {
+  height: max-content !important;
+  gap: 2px;
+  margin: 0 !important;
+  .tk-action-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .tk-action-count {
+    color: var(--main-color);
+    font-size: 1.5rem;
+    // 透明度
+    opacity: 0.8;
+  }
+}
+.twikoo .actions {
+  margin-left: 0 !important;
+}
+.tk-meta-input {
+  gap: 10px;
+  margin-bottom: 10px !important;
+}
+.tk-meta-input .el-input {
+  margin: 0 !important;
+}
+.tk-admin-config-input input {
+  color: #000 !important;
+}
+.tk-icon.__comments:first-child {
+  display: none !important;
+}
+.tk-meta {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  width: 100% !important;
+  align-items: center !important;
+  gap: 5px;
+}

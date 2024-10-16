@@ -1,0 +1,72 @@
+.article-latest {
+    display: grid;
+    gap: var(--section-separation);;
+    @include respond(xl) {
+        grid-template-columns: 2fr 1fr;
+    }
+    position: relative;
+    .article-image {
+        height: max-content;
+        box-sizing: border-box;
+        overflow: hidden;
+        position: relative;
+        @include respond(md) {
+            border-right: none;
+        }
+        a {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        img {
+            width: 100%;
+            height: auto;
+        }
+        .latest-label {
+            position: absolute;
+            top: 30px;
+            left: 0;
+            padding: 5px 10px 5px 5px;
+            background: rgba(255, 255, 255, 0.5);
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            font-size: 20px;
+        }
+    }
+    .article-details {
+        position: relative;
+        padding: 40px;
+        padding-top: 80px;
+        .article-category {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .article-details--content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            .article-title-wrapper {
+                flex: 1;
+                .article-title {
+                    font-weight: bold;
+                }
+                .article-subtitle {
+                    font-size: 18px;
+                    margin-top: 10px;
+                }
+            }
+            .article-footer {
+                align-self: flex-end;
+                margin-right: auto;
+                .article-time {
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,12 @@
+{{ $related := (where (.Site.RegularPages.Related .) "Params.hidden" "!=" true) | first 5 }}
+{{ with $related }}
+<aside class="related-content--wrapper main-width">
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            {{ range . }}
+                {{ partial "article-list/related" (dict "context" . "size" "700x420" "Type" "articleList") }}
+            {{ end }}
+        </div>
+    </div>
+</aside>
+{{ end }}

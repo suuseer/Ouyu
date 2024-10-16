@@ -1,0 +1,67 @@
+<nav class="no-copy" id="navbar">
+    <div class="nav-main main-width">
+        <div class="title nav-left">
+            <a href="{{ .Site.BaseURL | relLangURL }}">{{ partial "helper/icon" "Morick" }}</a>
+        </div>
+        <div class="nav-icon">
+            {{ partial "helper/icon" "right" }}
+        </div>
+        <div class="nav-center">
+            <div class="menu--commpect" id="switch">
+                <div class="menu" >
+                    {{ $currentPage := . }}
+                    {{ range .Site.Menus.main }}
+                    {{ $active := or (eq $currentPage.Title .Name) (or ($currentPage.HasMenuCurrent "main" .) ($currentPage.IsMenuCurrent "main" .)) }}
+                    <span {{ if $active }} class='current' {{ end }}>
+                        <a href='{{ .URL }}' {{ if eq .Params.newTab true }}target="_blank"{{ end }}>
+                            <span>{{- .Name -}}</span>
+                        </a>
+                    </span>
+                    {{ end }}
+                </div>
+                <div class="page-name">
+                    {{- .Title -}}
+                </div>
+            </div>
+        </div>
+        <div class="nav-right">
+            <a href="https://www.travellings.cn/go.html" target="_blank">
+                <div class="travelling">
+                        {{ partial "helper/icon" "train" }}
+                </div>
+            </a>
+            <div class="dark-mode-toggle" id="dark-mode-toggle">
+                {{ partial "helper/icon" "moon" }}
+            </div>
+            <div class="hamburger" type="button" id="toggleButton" aria-label="{{ T `toggleMenu` }}">
+                {{ partial "helper/icon" "hamburger" }}
+            </div>
+        </div>
+    </div>
+</nav>
+<script>
+    let lastScrollTop = 0;
+    const switchMenu = document.getElementById('switch');
+  
+    window.addEventListener('scroll', function() {
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  
+      if (scrollTop > lastScrollTop) {
+        // 向下滚动
+        switchMenu.classList.add('hidden');
+      } else {
+        // 向上滚动
+        switchMenu.classList.remove('hidden');
+      }
+      lastScrollTop = scrollTop;
+    });
+    const navbar = document.getElementById('navbar');
+    // 页面不在最顶部时，设置navbar背景
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset !== 0) {
+            navbar.classList.add('navbar-bg');
+        } else {
+            navbar.classList.remove('navbar-bg');
+        }
+    });
+</script>

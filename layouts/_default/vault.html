@@ -1,0 +1,38 @@
+{{ define "body_classes" }}page-software{{ end }}
+{{ define "main" }}
+<div class="vault-page main-width">
+  <div class="vault-container">
+    <div class="radio-inputs no-copy">
+      <label class="radio">
+        <input type="radio" name="radio" value="book" checked> <!-- 每个 input 现在有 value 属性 -->
+        <span class="name">书籍</span>
+      </label>
+      <label class="radio">
+        <input type="radio" name="radio" value="video">
+        <span class="name">影视</span>
+      </label>
+      <label class="radio">
+        <input type="radio" name="radio" value="music">
+        <span class="name">音乐</span>
+      </label>
+      <label class="radio">
+        <input type="radio" name="radio" value="podcast">
+        <span class="name">播客</span>
+      </label>
+      <label class="radio">
+        <input type="radio" name="radio" value="game">
+        <span class="name">游戏</span>
+      </label>
+      <label class="radio">
+        <input type="radio" name="radio" value="software">
+        <span class="name">软件</span>
+      </label>
+      <label class="radio">
+        <input type="radio" name="radio" value="goods">
+        <span class="name">好物</span>
+      </label>
+    </div>
+    <div class="vault-content grid" id="vaultContainer"></div> <!-- 显示条目的容器 -->
+  </div>
+</div>
+{{ end }}
